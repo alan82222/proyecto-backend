@@ -2,16 +2,13 @@ const {Router} = require ('express')
 const{addcliente, updateCliente, deleteCliente, listcliente, listncbyid}=require('../controllers/clientes');
 
 
-const router =Router();
+const router = Router();
 
-//http://localhost:3001/api/v1/cliente/
-//http://localhost:3001/api/v1/cliente/1
-//http://localhost:3001/api/v1/cliente/3
 
 router.get('/', listcliente);
-router.get('/:nc', listncbyid);
+router.get('/:id', listncbyid);
 //router.post('/', signIn);
 router.put('/', addcliente);
-router.patch('/:nc', updateCliente);
-router.delete('/:nc', deleteCliente);
+router.patch('/:id', updateCliente);
+router.delete('/:ud', deleteCliente);
 module.exports =router;

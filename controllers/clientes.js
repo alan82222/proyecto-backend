@@ -27,9 +27,9 @@ const listcliente = async (req = request, res = response) => {
 
 const listncbyid = async (req = request, res = response) => {
     
-    const { nc } = req.params;
+    const {id} = req.params;
 
-    if (isNaN(nc)) {
+    if (isNaN(id)) {
         res.status(400).json({msg: 'Invalid ID'});
         return;
     } 
@@ -38,7 +38,7 @@ const listncbyid = async (req = request, res = response) => {
     try{
         conn = await pool.getConnection();
 
-    const [cliente] = await conn.query (narmodels.getByID, [nc], (err)=>{
+    const [cliente] = await conn.query (narmodels.getByID, [id], (err)=>{
         if(err){
             throw err
         }
@@ -66,19 +66,19 @@ const listncbyid = async (req = request, res = response) => {
 const addcliente =async(req = request, res= response)=>{
     let conn;
     const {
-        nc,
+        id,
         nombre,
         apellido,
         activo,
         servicio
     } = req.body;
-    if (!nc|| !nombre|| !apellido|| !activo || !servicio){
+    if (!id|| !nombre|| !apellido|| !activo || !servicio){
 res.status(400).json({msg:'Missing informarion'});
 return;
         }
        
 
-        const clientes= [nc,
+        const clientes= [id,
             nombre,
             apellido,
             activo,
@@ -92,7 +92,7 @@ return;
         
         const [Narname] = await conn.query(
             narmodels.getByName,
-            [Name],
+            [nombre],
             (err) => {if (err) throw err;}
         );
         if (Narname){

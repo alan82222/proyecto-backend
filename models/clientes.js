@@ -1,59 +1,55 @@
 const narmodels = {
-    getAll: `
-    SELECT 
-    * 
-    FROM 
-    clientes`,
-
-    getByID: `
-    SELECT
-    *
-    FROM
-    clientes
-    WHERE
-    nc= ?
+    getAll: `SELECT 
+                * 
+            FROM 
+                clientes
+                `,
+    getByID:` SELECT
+                *
+            FROM
+                clientes
+                    WHERE
+                        id=?
+    
     `,
     addRow:`
-    INSERT INTO
-    clientes(
-        nc,
-        nombre,
-        apellido,
-        activo,
-        servicio
-    )
-    VALUES (
-        ?,?,?,?,?
-    )`,
-getByName:`
-    SELECT 
-    * 
-    FROM 
-    clientes 
-    WHERE Name =?
+            INSERT INTO
+            clientes (
+                id,
+                nombre,
+                apellido,
+                activo,
+                servicio
+            )
+            VALUES(
+                ?,?,?,?,?
+            )`,
+    updateRow:`
+            UPDATE
+                clientes 
+            SET
+                nombre=?,
+                apellido=?,
+                activo=?,
+                servicio=?
+               
+            WHERE
+                id=?
+            `,
+            getByName: `
+                SELECT
+                    *
+                FROM
+                    clientes
+                WHERE 
+                    nombre = ?
     `,
-
-    updatecliente:`
-    UPDATE
-    clientes
-    SET
-    nc = ?,
-    nombre = ?,
-    apellido = ?,
-    activo = ?,
-    servicio = ?
-        WHERE 
-        id =?
-    `,
-
-    deleteRow:`
+    deleteRow: `
     DELETE FROM 
-    clientes
+    disney_movies
     WHERE 
-    nc=?
+    id=?
     `,
-    
-    
-}
+};
 
-module.exports=narmodels;
+module.exports = narmodels;
