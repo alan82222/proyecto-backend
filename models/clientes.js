@@ -46,7 +46,7 @@ const narmodels = {
     `,
     deleteRow: `
     DELETE FROM 
-    disney_movies
+    clientes
     WHERE 
     id=?
     `,

@@ -1,15 +1,17 @@
-const mysql = require('mysql');
+const mysql = require('mariadb');
+require('dotenv').config();
 
 const config = {
-  host: ['localhost', '::1', '127.0.0.1'],
-  port: 3308,
-  database: 'clientes',
-  user: 'alan',
-  password: '[olakase12]',
-  connectionLimit: 100, // Ajusta según sea necesario
+    host: process.env.DB_HOST,
+    port:  process.env.DB_PORT, 
+    database:  process.env.DB_DATABASE, 
+    user:  process.env.DB_USER,  
+    password: process.env.DB_PASSWORD,
+    connectionlimit:  process.env.DB_CONNECTION_LIMIT
+    
 };
 
-
 const pool = mysql.createPool(config);
+
 
 module.exports = pool;

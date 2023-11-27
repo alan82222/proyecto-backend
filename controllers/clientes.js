@@ -4,24 +4,19 @@ const pool=require('../db');
 
 
 const listcliente = async (req = request, res = response) => {
-    let conn; 
-
-    try{
-        conn = await pool.getConnection();
-
-    const cliente = await conn.query (narmodels.getAll, (err)=>{
-        if(err){
-            throw err
-        }
-    });
-
-    res.json(cliente);
-    } catch (error){
-        console.log(error);
-        res.status(500).json(error);
-    } finally{
-        if (conn) conn.end();
+  
+    let conn;
+    try {
+      conn = await pool.getConnection();
+      const cliente = await conn.query(narmodels.getAll);
+      res.json(cliente);
+    } catch (error) {
+      console.error("Error executing query:", error);
+      res.status(500).json(error);
+    } finally {
+      if (conn) conn.end();
     }
+    
     
 }
 
@@ -96,7 +91,7 @@ return;
             (err) => {if (err) throw err;}
         );
         if (Narname){
-            res.status(409).json({msg:`Cliente con el nombre ${Name} ya existe`});
+            res.status(409).json({msg:`Cliente con el nombre ${nombre} ya existe`});
             return;
         }
         
@@ -128,8 +123,8 @@ const updateCliente=async(req = request, res= response)=>{
 
 const {id} = req.params;
 let newUserData=[
-    Name,
-        nc,
+    
+        id,
         nombre,
         apellido,
         activo,
@@ -150,11 +145,11 @@ if (!clienteExists ){
 
 const [usernamecliente] = await conn.query(
     narmodels.getByName,
-    [Name],
+    [nombre],
     (err) => {if (err) throw err;}
 );
 if (usernamecliente){
-    res.status(409).json({msg:`Cliente con el nombre ${Name} ya existe`});
+    res.status(409).json({msg:`Cliente con el nombre ${nombre} ya existe`});
     return;
 }
 

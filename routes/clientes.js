@@ -10,5 +10,5 @@ router.get('/:id', listncbyid);
 //router.post('/', signIn);
 router.put('/', addcliente);
 router.patch('/:id', updateCliente);
-router.delete('/:ud', deleteCliente);
+router.delete('/:id', deleteCliente);
 module.exports =router;
