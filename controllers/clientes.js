@@ -169,7 +169,7 @@ newUserData.forEach((clienteData, index)=> {
 })
 
 const clienteUpdate = await conn.query(
-    narmodels.updateuchiha,
+    narmodels.updateRow,
     [...newUserData, id],
     (err) => {if (err) throw err;}
 );
